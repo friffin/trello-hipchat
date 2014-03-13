@@ -150,6 +150,10 @@ def notify(board_id, list_names, room_id):
             card_name = ESC(card_name_strip(A["data"]["card"]["name"]))
             author = ESC(A["memberCreator"]["fullName"])
 
+            if( A["data"]["card"].get("closed") ):
+                msg(room_id, "%s archived card <a href=\"%s\">%s</a>" % (
+                    author, card_url, card_name))
+
             if "idList" in A["data"]["old"] and \
                "idList" in A["data"]["card"]:
                 # Move between lists
